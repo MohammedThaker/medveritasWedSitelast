@@ -836,7 +836,7 @@ function Services({ lang }: SectionProps): React.ReactElement {
           <div style={{ width: visible ? 52 : 0, height: 4, background: "#16a34a", marginBottom: 48, transition: "width .7s ease .3s" }} />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 32, marginBottom: 40 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(580px, 1fr))", gap: 32, marginBottom: 40 }}>
           {displayServices.map((s, i) => (
             <div key={i} className={`service-card reveal stagger-${i + 1}${visible ? " visible" : ""}`}>
               <div style={{ fontSize: 44, fontWeight: 700, color: "#16a34a", marginBottom: 10, lineHeight: 1 }}>{s.num}</div>
