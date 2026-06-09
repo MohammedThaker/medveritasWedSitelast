@@ -5,7 +5,6 @@ import type React from "react";
 // ─────────────────────────────────────────────
 // Types
 // ─────────────────────────────────────────────
-
 type Lang = "en" | "ar";
 
 interface ServiceItem {
@@ -710,7 +709,7 @@ interface SectionProps { lang: Lang; }
 function Hero({ lang }: SectionProps): React.ReactElement {
   return (
     <section style={{ position: "relative", width: "100%", height: "100vh", minHeight: 500, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-      <div style={{ position: "absolute", inset: 0, backgroundImage: "url('/surveyor.png')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.45) contrast(1.1)" }} />
+      <div style={{ position: "absolute", inset: 0, backgroundImage: "url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=1080&fit=crop')", backgroundSize: "cover", backgroundPosition: "center", filter: "brightness(0.45) contrast(1.1)" }} />
       <div style={{ position: "absolute", inset: 0, background: "rgba(15, 14, 14, 0.4)" }} />
 
       <div style={{ position: "relative", zIndex: 10, width: "100%", padding: "0 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 40, flexWrap: "wrap" }}>
@@ -800,7 +799,7 @@ function WhoWeAre({ lang }: SectionProps): React.ReactElement {
             style={{ position: "relative", height: 360, borderRadius: 8, overflow: "hidden" }}
           >
             <img
-              src="surveyor.png"
+              src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=720&h=540&fit=crop"
               alt="Team"
               style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform .5s ease" }}
               onMouseEnter={(e: MouseEvent<HTMLImageElement>) => { e.currentTarget.style.transform = "scale(1.04)"; }}
@@ -911,7 +910,7 @@ function ImpactReport({ lang }: SectionProps): React.ReactElement {
               {ar ? "مديرية شملها المسح" : "Districts Surveyed"}
             </div>
             <img
-              src="/surveyor.png"
+              src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=720&h=540&fit=crop"
               alt="Case Study"
               style={{ width: "100%", height: 180, objectFit: "cover", borderRadius: 4, marginBottom: 18, transition: "transform .4s ease" }}
               onMouseEnter={(e: MouseEvent<HTMLImageElement>) => { e.currentTarget.style.transform = "scale(1.03)"; }}
