@@ -119,11 +119,25 @@ const STATS: StatItem[] = [
   { num: "10", label: "Years" },
 ];
 
+const STATS_AR: StatItem[] = [
+  { num: "300+", label: "موظف ميداني" },
+  { num: "34", label: "محافظات" },
+  { num: "20+", label: "مشاريع" },
+  { num: "10", label: "سنوات" },
+];
+
 const RESULTS: ResultItem[] = [
   { num: "300+", unit: "Field Staff", label: "deployed across all governorates of Yemen" },
   { num: "34", unit: "Governorates", label: "comprehensive coverage nationwide" },
   { num: "20+", unit: "Projects", label: "completed in 2023–2025" },
   { num: "10", unit: "Years", label: "of operational excellence" },
+];
+
+const RESULTS_AR: ResultItem[] = [
+  { num: "300+", unit: "موظف ميداني", label: "ينتشرون في جميع محافظات اليمن" },
+  { num: "34", unit: "محافظات", label: "تغطية شاملة على مستوى البلاد" },
+  { num: "20+", unit: "مشاريع", label: "مكتملة في 2023–2025" },
+  { num: "10", unit: "سنوات", label: "من التميز التشغيلي" },
 ];
 
 const NEWS: NewsItem[] = [
@@ -132,12 +146,24 @@ const NEWS: NewsItem[] = [
   { type: "Sector Update", date: "APR 2026", title: "Beyond Health: Medveritas Expands into Education and Governance", body: "Strengthening systems and outcomes through evidence, analytics, and local partnerships." },
 ];
 
+const NEWS_AR: NewsItem[] = [
+  { type: "دراسة حالة", date: "يونيو 2026", title: "الوصول إلى غير الموصولين: مسح تطعيم 119 مديرية", body: "كيف قدمنا بيانات عالية الجودة عبر 119 مديرية يصعب الوصول إليها باستخدام استراتيجيات ميدانية تكيفية ورصد في الوقت الفعلي." },
+  { type: "منهجية", date: "مايو 2026", title: "LQAS في الميدان: تقييم جودة سريع في مناطق النزاع", body: "داخل نهجنا في LQAS لإنتاج أدلة قابلة للتنفيذ بسرعة — عندما لا يمكن انتظار اتخاذ القرارات." },
+  { type: "تحديث قطاعي", date: "أبريل 2026", title: "ما بعد الصحة: ميدفيريتاس تتوسع إلى التعليم والحوكمة", body: "تعزيز الأنظمة والنتائج عبر الأدلة والتحليلات والشراكات المحلية." },
+];
+
 const PARTNERS: string[] = ["WHO", "UNICEF", "CARE", "FAO", "EMPHNET"];
 
 const WHO_FEATURES: [string, string][] = [
   ["Nationwide Field Network", "300+ field staff across all governorates of Yemen"],
   ["Rigorous Methodology", "International standards in design, data, and analysis"],
   ["Ethical & Secure Operations", "Protecting participants, data, and communities"],
+];
+
+const WHO_FEATURES_AR: [string, string][] = [
+  ["شبكة ميدانية على مستوى البلاد", "أكثر من 300 موظف ميداني في جميع محافظات اليمن"],
+  ["منهجية صارمة", "معايير دولية في التصميم والبيانات والتحليل"],
+  ["عمليات أخلاقية وآمنة", "حماية المشاركين والبيانات والمجتمعات"],
 ];
 
 // ─────────────────────────────────────────────
@@ -680,6 +706,7 @@ function AboutPage({ lang }: SectionProps): React.ReactElement {
   const [refValues, visibleValues] = useScrollReveal();
   const [refTeam, visibleTeam] = useScrollReveal();
   const [refTimeline, visibleTimeline] = useScrollReveal();
+  const whoFeatures = ar ? WHO_FEATURES_AR : WHO_FEATURES;
 
   return (
     <div className="page-enter">
@@ -752,19 +779,21 @@ function AboutPage({ lang }: SectionProps): React.ReactElement {
                   ? "رؤيتنا هي يمن يُبنى فيه السياسات والبرامج على أدلة قوية ومنهجية شفافة، مما يؤدي إلى نتائج أفضل ومستدامة للمجتمعات الأكثر احتياجاً."
                   : "Our vision is a Yemen where policies and programs are built on robust evidence and transparent methodology, leading to better and more sustainable outcomes for the communities that need them most."}
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                {WHO_FEATURES.map(([title, desc], i) => (
-                  <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                    <div style={{ width: 36, height: 36, background: "#f0fdf4", border: "2px solid #16a34a", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+          
+                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  {whoFeatures.map(([title, desc], i) => (
+                    <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                      <div style={{ width: 36, height: 36, background: "#f0fdf4", border: "2px solid #16a34a", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                      </div>
+                      <div>
+                        <h4 style={{ fontWeight: 700, color: "#0f172a", fontSize: 15, marginBottom: 3 }}>{title}</h4>
+                        <p style={{ fontSize: 14, color: "#6b7280", margin: 0, lineHeight: 1.5 }}>{desc}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 style={{ fontWeight: 700, color: "#0f172a", fontSize: 15, marginBottom: 3 }}>{title}</h4>
-                      <p style={{ fontSize: 14, color: "#6b7280", margin: 0, lineHeight: 1.5 }}>{desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+      
             </div>
 
             <div className={`reveal-right${visibleMission ? " visible" : ""}`} style={{ position: "relative" }}>
@@ -948,6 +977,7 @@ function WhoWeAre({ lang }: SectionProps): React.ReactElement {
   const [ref, visible] = useScrollReveal();
   const [refImg, visibleImg] = useScrollReveal();
   const ar = lang === "ar";
+  const whoFeatures = ar ? WHO_FEATURES_AR : WHO_FEATURES;
   return (
     <section style={{ background: "#0f172a", color: "white", padding: "80px 0" }}>
       <div style={{ maxWidth: 1536, margin: "0 auto", padding: "0 2rem" }}>
@@ -958,7 +988,7 @@ function WhoWeAre({ lang }: SectionProps): React.ReactElement {
             <p style={{ fontSize: 18, color: "#d1d5db", lineHeight: 1.75, marginBottom: 14 }}>{ar ? AR.who_p1 : "Medveritas combines unparalleled local access with international methodological rigor. With more than 300 field staff deployed across all governorates of Yemen, we collect high-quality data in the most challenging and hard-to-reach areas."}</p>
             <p style={{ fontSize: 18, color: "#d1d5db", lineHeight: 1.75, marginBottom: 20 }}>{ar ? AR.who_p2 : "Our teams are trained to global standards and our processes are built on internationally recognized methodologies, ensuring that every study we deliver is credible, reliable, and actionable."}</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              {WHO_FEATURES.map(([title, desc], i) => (
+              {whoFeatures.map(([title, desc], i) => (
                 <div key={i} style={{ display: "flex", gap: 14 }}>
                   <div style={{ width: 3, background: "#4ade80", flexShrink: 0, borderRadius: 2 }} />
                   <div>
@@ -986,6 +1016,7 @@ function Services({ lang }: SectionProps): React.ReactElement {
   const [ref, visible] = useScrollReveal();
   const ar = lang === "ar";
   const displayServices: ServiceItem[] = ar ? AR.services : SERVICES;
+  const stats = ar ? STATS_AR : STATS;
   return (
     <section style={{ background: "white", padding: "80px 0" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 2rem" }}>
@@ -1009,7 +1040,7 @@ function Services({ lang }: SectionProps): React.ReactElement {
           ))}
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(120px,1fr))", gap: 16, background: "#f8fafc", padding: 36, borderRadius: 8 }}>
-          {STATS.map((s, i) => (
+          {stats.map((s, i) => (
             <div key={i} className="stat-card">
               <div style={{ fontSize: "clamp(26px,4vw,42px)", fontWeight: 700, color: "#16a34a", marginBottom: 5 }}>{s.num}</div>
               <div style={{ fontSize: 13, fontWeight: 600, color: "#0f172a" }}>{s.label}</div>
@@ -1032,7 +1063,7 @@ function ImpactReport({ lang }: SectionProps): React.ReactElement {
           <div ref={refL} className={`reveal-left${visibleL ? " visible" : ""}`}>
             <div style={{ fontSize: 14, fontWeight: 700, color: "#16a34a", letterSpacing: 3, marginBottom: 14, textTransform: "uppercase" }}>{ar ? AR.impact_tag : "FEATURED CASE STUDY"}</div>
             <h2 style={{ fontSize: "48px", fontWeight: 700, color: "#0f172a", marginBottom: 18, lineHeight: 1.2 }}>{ar ? AR.impact_title : "Reaching the Unreachable"}</h2>
-            <p style={{ fontSize: 18, color: "#374151", lineHeight: 1.75, marginBottom: 14 }}><strong>119-District Polio Vaccination Coverage Survey</strong></p>
+            <p style={{ fontSize: 18, color: "#374151", lineHeight: 1.75, marginBottom: 14 }}><strong>{ar ? "مسح تغطية التطعيم ضد شلل الأطفال في 119 مديرية" : "119-District Polio Vaccination Coverage Survey"}</strong></p>
             <p style={{ fontSize: 18, color: "#374151", lineHeight: 1.75, marginBottom: 20 }}>{ar ? AR.impact_p : "Medveritas conducted a comprehensive polio vaccination coverage survey across 119 districts in Yemen, including high-risk and hard-to-reach areas. Our nationwide field network and robust methodology delivered high-quality, actionable data that informed microplanning and strengthened immunization programs."}</p>
             <button className="btn-primary">{ar ? AR.read_study : "Read Full Case Study"}<ArrowIcon /></button>
           </div>
@@ -1054,6 +1085,7 @@ function ImpactReport({ lang }: SectionProps): React.ReactElement {
 function OurResults({ lang }: SectionProps): React.ReactElement {
   const [ref, visible] = useScrollReveal();
   const ar = lang === "ar";
+  const results = ar ? RESULTS_AR : RESULTS;
   return (
     <section style={{ background: "white", padding: "80px 0" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 2rem" }}>
@@ -1062,7 +1094,7 @@ function OurResults({ lang }: SectionProps): React.ReactElement {
           <p style={{ fontSize: 18, color: "#6b7280", maxWidth: 672, margin: "0 auto", lineHeight: 1.6 }}>{ar ? AR.results_sub : "Trusted by leading international organizations for rigorous research and monitoring in Yemen's most challenging contexts"}</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: 20, marginBottom: 48 }}>
-          {RESULTS.map((r, i) => (
+          {results.map((r, i) => (
             <div key={i} className={`stat-card reveal stagger-${i + 1}${visible ? " visible" : ""}`}>
               <div style={{ fontSize: "clamp(32px,4vw,48px)", fontWeight: 700, color: "#16a34a", marginBottom: 5 }}>{r.num}</div>
               <div style={{ fontSize: 15, fontWeight: 600, color: "#0f172a", marginBottom: 8 }}>{r.unit}</div>
@@ -1102,7 +1134,7 @@ function CTA({ lang }: SectionProps): React.ReactElement {
           <button className="btn-outline-green">{ar ? AR.contact : "Get in Touch"}</button>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 9, color: "#9ca3af", fontSize: 13 }}>
-          <span>📍 Sana'a, Yemen</span>
+          <span>   Sana'a, Yemen</span>
           <span>📧 info@medveritas.com</span>
           <span>📱 +967 (0) XXX XXX XXX</span>
         </div>
@@ -1114,6 +1146,7 @@ function CTA({ lang }: SectionProps): React.ReactElement {
 function RecentNews({ lang }: SectionProps): React.ReactElement {
   const [ref, visible] = useScrollReveal();
   const ar = lang === "ar";
+  const news = ar ? NEWS_AR : NEWS;
   return (
     <section style={{ background: "#f8fafc", padding: "80px 0" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 2rem" }}>
@@ -1123,7 +1156,7 @@ function RecentNews({ lang }: SectionProps): React.ReactElement {
           <div style={{ width: visible ? 52 : 0, height: 4, background: "#16a34a", marginBottom: 40, transition: "width .7s ease .3s" }} />
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 40 }}>
-          {NEWS.map((item, i) => (
+          {news.map((item, i) => (
             <div key={i} className={`news-card reveal stagger-${i + 1}${visible ? " visible" : ""}`}>
               <div>
                 <div style={{ fontSize: 12, fontWeight: 700, color: "#16a34a", marginBottom: 6 }}>{item.type} • {item.date}</div>
@@ -1167,7 +1200,10 @@ function Footer({ lang, onNavigate }: SectionProps & { onNavigate: (p: Page) => 
           <div>
             <h4 style={{ fontWeight: 700, fontSize: 13, color: "white", marginBottom: 14 }}>{ar ? "الخدمات" : "Services"}</h4>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 9, padding: 0, margin: 0 }}>
-              {["Research & Evaluation", "Third-Party Monitoring", "Strategy & Governance", "Capacity Building"].map((l) => (
+              {(ar
+                ? ["البحث والتقييم", "الرصد من طرف ثالث", "الاستراتيجية والحوكمة", "بناء القدرات"]
+                : ["Research & Evaluation", "Third-Party Monitoring", "Strategy & Governance", "Capacity Building"]
+              ).map((l) => (
                 <li key={l}><a href="#" className="footer-link">{l}</a></li>
               ))}
             </ul>
@@ -1189,7 +1225,7 @@ function Footer({ lang, onNavigate }: SectionProps & { onNavigate: (p: Page) => 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 28, marginBottom: 28, paddingBottom: 28, borderBottom: "1px solid #374151" }}>
           <div>
             <h4 style={{ fontWeight: 700, fontSize: 13, color: "white", marginBottom: 10 }}>{ar ? "اتصل بنا" : "Contact Us"}</h4>
-            <p style={{ fontSize: 12, color: "#9ca3af", marginBottom: 5 }}>📍 Sana'a, Yemen</p>
+            <p style={{ fontSize: 12, color: "#9ca3af", marginBottom: 5 }}> Sana'a, Yemen</p>
             <p style={{ fontSize: 12, color: "#9ca3af", marginBottom: 5 }}>📧 info@medveritas.com</p>
             <p style={{ fontSize: 12, color: "#9ca3af" }}>📱 +967 (0) XXX XXX XXX</p>
           </div>
